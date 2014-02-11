@@ -98,12 +98,12 @@ namespace Ogres.Movement
         /// <seealso cref="http://robowiki.net/wiki/Energy_drop"/>
         public void MakeDefensiveMove(ScannedRobotEvent evnt, double currentEnemyEnergy)
         {
-            double enemyAbsoluteBearing = Helpers.Utilities.GetAbsoluteBearing(_robot.HeadingRadians, evnt.BearingRadians);
-            double energyDiff = currentEnemyEnergy - evnt.Energy;
+            var enemyAbsoluteBearing = Utilities.GetAbsoluteBearing(_robot.HeadingRadians, evnt.BearingRadians);
+            var energyDiff = currentEnemyEnergy - evnt.Energy;
 
             if (_robot.DistanceRemaining == 0D && energyDiff > 0D)
             {
-                double turnRadians = GetTurnRadians(enemyAbsoluteBearing);
+                var turnRadians = GetTurnRadians(enemyAbsoluteBearing);
                 if (enemyAbsoluteBearing < 0D)
                 {
                     Console.WriteLine("Defensive Move: enemyAbsoluteBearing: {0}: Turn RIGHT {1} Radians.", enemyAbsoluteBearing, turnRadians);
