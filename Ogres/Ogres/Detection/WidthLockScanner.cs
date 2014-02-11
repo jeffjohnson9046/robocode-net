@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using Robocode;
 using Robocode.Util;
@@ -16,7 +12,7 @@ namespace Ogres.Detection
     /// </summary>
     class WidthLockScanner : IScannerPackage
     {
-        AdvancedRobot _robot;
+        readonly AdvancedRobot _robot;
 
         public WidthLockScanner(AdvancedRobot robot)
         {
@@ -33,9 +29,9 @@ namespace Ogres.Detection
         /// <param name="evnt">The <c>ScannedRobotEvent</c> arguments from the <c>OnScannedRobot</c> event.</param>
         public void Scan(ScannedRobotEvent evnt)
         {
-            double enemyAbsoluteBearing = Utilities.GetAbsoluteBearing(_robot.HeadingRadians, evnt.BearingRadians);
-            double radarTurn = Utils.NormalRelativeAngle(enemyAbsoluteBearing - _robot.RadarHeadingRadians);
-            double extraTurn = Math.Min(Math.Atan(Utilities.ROBOT_WIDTH / evnt.Distance), Rules.RADAR_TURN_RATE_RADIANS);
+            var enemyAbsoluteBearing = Utilities.GetAbsoluteBearing(_robot.HeadingRadians, evnt.BearingRadians);
+            var radarTurn = Utils.NormalRelativeAngle(enemyAbsoluteBearing - _robot.RadarHeadingRadians);
+            var extraTurn = Math.Min(Math.Atan(Utilities.ROBOT_WIDTH / evnt.Distance), Rules.RADAR_TURN_RATE_RADIANS);
 
             // if radarTurn is negative, then it's turning to the left, so we'll need to push it more to the left.  Otherwise, 
             // keep turning it to the right.

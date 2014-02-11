@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using Robocode;
 using Robocode.Util;
@@ -13,7 +9,7 @@ namespace Ogres.TargetAcquisition
 {
     class OgreTargeter : ITargeterPackage
     {
-        AdvancedRobot _robot;
+        readonly AdvancedRobot _robot;
 
         public OgreTargeter(AdvancedRobot robot)
         {
@@ -32,11 +28,11 @@ namespace Ogres.TargetAcquisition
         /// <param name="evnt">The <c>ScannedRobotEvent</c> args from the <c>OnScannedRobot</c> event.</param>
         public void Aim(ScannedRobotEvent evnt)
         { 
-            double absoluteBearing = Utilities.GetAbsoluteBearing(_robot.HeadingRadians, evnt.BearingRadians);
-            double enemyLateralVelocity = evnt.Velocity * Math.Sin(evnt.HeadingRadians - absoluteBearing);
-            double bulletPower = this.GetBulletPower(evnt);
-            double bulletVelocity = Utilities.GetBulletVelocity(bulletPower);
-            double angleOffset = enemyLateralVelocity / bulletVelocity;
+            var absoluteBearing = Utilities.GetAbsoluteBearing(_robot.HeadingRadians, evnt.BearingRadians);
+            var enemyLateralVelocity = evnt.Velocity * Math.Sin(evnt.HeadingRadians - absoluteBearing);
+            var bulletPower = GetBulletPower(evnt);
+            var bulletVelocity = Utilities.GetBulletVelocity(bulletPower);
+            var angleOffset = enemyLateralVelocity / bulletVelocity;
 
             _robot.TurnGunRightRadians(Utils.NormalRelativeAngle(absoluteBearing - _robot.GunHeadingRadians + angleOffset));
         }

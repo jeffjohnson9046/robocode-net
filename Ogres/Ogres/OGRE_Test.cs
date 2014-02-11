@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using Robocode;
-using Robocode.Util;
 using Ogres.Detection;
 using Ogres.TargetAcquisition;
 using Ogres.Movement;
@@ -65,7 +60,7 @@ namespace Ogres
             
             _gun.Aim(evnt);
 
-            double bulletPower = _gun.GetBulletPower(evnt);
+            var bulletPower = _gun.GetBulletPower(evnt);
             _gun.Fire(bulletPower);
         }
 

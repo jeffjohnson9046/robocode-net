@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using Robocode;
 using Ogres.Helpers;
@@ -12,7 +8,7 @@ namespace Ogres.Movement
 {
     class DefensiveMovement : IMovementPackage
     {
-        AdvancedRobot _robot;
+        readonly AdvancedRobot _robot;
         double _movingForward = 1D;
 
         public DefensiveMovement(AdvancedRobot robot)
@@ -26,8 +22,8 @@ namespace Ogres.Movement
         /// <param name="evnt">The <c>HitByBulletEvent</c> args from the <c>OnHitByBullet</c> event.</param>
         public void ReactToBulletHit(HitByBulletEvent evnt)
         {
-            double enemyAbsoluteBearing = Helpers.Utilities.GetAbsoluteBearing(_robot.HeadingRadians, evnt.BearingRadians);
-            double turnRadians = GetTurnRadians(enemyAbsoluteBearing);
+            var enemyAbsoluteBearing = Utilities.GetAbsoluteBearing(_robot.HeadingRadians, evnt.BearingRadians);
+            var turnRadians = GetTurnRadians(enemyAbsoluteBearing);
 
             if (enemyAbsoluteBearing < 0D)
             {
@@ -131,7 +127,7 @@ namespace Ogres.Movement
             throw new NotImplementedException();
         }
 
-        private double GetTurnRadians(double bearingRadians)
+        private static double GetTurnRadians(double bearingRadians)
         {
             return bearingRadians + Utilities.NINETY_DEGREES_IN_RADIANS;
         }
