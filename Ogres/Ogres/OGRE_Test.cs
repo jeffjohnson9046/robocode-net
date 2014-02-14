@@ -27,7 +27,7 @@ namespace Ogres
         /// </summary>
         public override void Run()
         {
-            SetColors(Color.Black, Color.DimGray, Color.Gainsboro, Color.Gold, Color.PaleGreen);
+            SetColors(Color.DarkOliveGreen, Color.Khaki, Color.DarkSlateGray, Color.Gold, Color.PaleGreen);
 
             IsAdjustGunForRobotTurn = true;
             IsAdjustRadarForGunTurn = true;
