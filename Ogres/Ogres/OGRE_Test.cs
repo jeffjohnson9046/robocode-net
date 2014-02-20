@@ -9,7 +9,7 @@ using Ogres.Movement;
 
 namespace Ogres
 {
-    class OGRE_MkII : AdvancedRobot
+    class Ogre_MkIII : AdvancedRobot
     {
         IScannerPackage _sensors;
         ITargeterPackage _gun;
@@ -27,7 +27,7 @@ namespace Ogres
         /// </summary>
         public override void Run()
         {
-            SetColors(Color.DarkOliveGreen, Color.Khaki, Color.DarkSlateGray, Color.Gold, Color.PaleGreen);
+            SetColors(Color.DarkOliveGreen, Color.Khaki, Color.DarkSlateGray, Color.DeepPink, Color.PaleGreen);
 
             IsAdjustGunForRobotTurn = true;
             IsAdjustRadarForGunTurn = true;

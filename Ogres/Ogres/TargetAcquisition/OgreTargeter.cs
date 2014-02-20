@@ -32,9 +32,11 @@ namespace Ogres.TargetAcquisition
             var enemyLateralVelocity = evnt.Velocity * Math.Sin(evnt.HeadingRadians - absoluteBearing);
             var bulletPower = GetBulletPower(evnt);
             var bulletVelocity = Utilities.GetBulletVelocity(bulletPower);
-            var angleOffset = enemyLateralVelocity / bulletVelocity;
+            var angleOffset = Math.Asin(enemyLateralVelocity/bulletVelocity);
 
             _robot.TurnGunRightRadians(Utils.NormalRelativeAngle(absoluteBearing - _robot.GunHeadingRadians + angleOffset));
+
+            //_robot.TurnGunRightRadians(Utils.NormalRelativeAngle(absoluteBearing - _robot.GunHeadingRadians + (evnt.Velocity * Math.Sin(evnt.HeadingRadians - absoluteBearing) / 13d)));
         }
 
         /// <summary>
@@ -43,7 +45,8 @@ namespace Ogres.TargetAcquisition
         /// <param name="bulletPower">The strength of the bullet to shoot.</param>
         public void Fire(double bulletPower)
         {
-            if (_robot.GunHeat == 0D && Math.Abs(_robot.GunTurnRemaining) < 10D)
+            // Removed _robot.GunTurnRemaining from this condition - it never seemed to come up.
+            if (_robot.GunHeat == 0D)
             {
                 _robot.SetFire(bulletPower);
             }

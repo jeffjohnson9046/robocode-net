@@ -1,5 +1,6 @@
 ﻿using System;
-
+using System.Drawing;
+using System.Runtime.Remoting.Messaging;
 using Robocode;
 
 
@@ -24,9 +25,18 @@ namespace Ogres.Helpers
         /// </remarks>
         public static double GetAbsoluteBearing(double myHeading, double enemyBearing)
         {
-            return myHeading + enemyBearing;
+            var absoluteBearing = myHeading + enemyBearing;
+            //if (absoluteBearing < 0d)
+            //{
+            //    Console.WriteLine("absoluteBearing: {0}", absoluteBearing);
+            //}
+            //if (absoluteBearing < 0d)
+            //{
+            //    absoluteBearing += 2d * Math.PI;
+            //}
+            return absoluteBearing;
         }
-        
+
         /// <summary>
         /// Calculate a <c>Bullet</c>'s velocity based on its power.
         /// </summary>
